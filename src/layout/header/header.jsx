@@ -14,7 +14,7 @@ import { CartIcon } from "../../assets/icons/cart-icon";
 export const Header = () => {
     return (
        <header>
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
             <Stack py={"8px"} direction={"row"} justifyContent={"end"} gap={"24px"} alignItems={"center"}>
                 <a style={{textDecoration: "none"}} href="#">
                     <Typography variant="h4">Доставка и оплата</Typography>
@@ -32,7 +32,7 @@ export const Header = () => {
                 </a>
                 </Stack>
             </Stack>
-            <Stack py={"18px"} direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
+            <Stack py={"10px"} direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                 <Stack direction={"row"} gap={"32px"} alignItems={"center"}>
                     <Link to={"/"}>
                         <img src={Logo} alt="" />

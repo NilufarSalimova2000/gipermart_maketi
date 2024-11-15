@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y, Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import './style.css';
 import { Navigation } from 'swiper/modules';
 import { useGetBanner } from "../../service/query/useGetBanner";
 import { Box, Skeleton } from "@mui/material";
@@ -14,10 +13,10 @@ export const Banner = () => {
     return (
         <Box>
             {isLoading ? (
-                <Skeleton variant="rectangular" width="100%" height={400} />
+                <Skeleton variant="rectangular" width="100%" height={578} />
             ) : (
                 <Swiper
-                    modules={[Navigation, Pagination, A11y, Autoplay]}
+                    modules={[Navigation, Pagination, Autoplay]}
                     slidesPerView={1}
                     navigation={true} 
                     pagination={{ clickable: true }}

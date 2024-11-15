@@ -3,7 +3,7 @@ import { colors } from "./colors";
 
 export const theme = createTheme({
     typography: {
-        fontFamily: ["Jost", "serif"],
+        fontFamily: ["Jost", "serif"].join(),
         h1: {
             fontWeight: 800,
             fontSize: "70px",
@@ -15,9 +15,10 @@ export const theme = createTheme({
             color: `${colors.primary}`,
         },
         h3:{
-            fontWeight: 800,
-            fontSize: "40px",
-            color: `${colors.primary}`,
+            fontWeight: 600,
+            fontSize: "24px",
+            lineHeight: "150%",
+            color: "#333",
         },
         h4: {
             fontWeight: 400,
@@ -26,14 +27,7 @@ export const theme = createTheme({
             color: `${colors.m3syslightonbackground}`,
         },
         h5: {
-            fontWeight: 700,
-            fontSize: "20px",
-            lineHeight: "165%",
-            color: `${colors.primary}`,
-            transition: "0,4s",
-            '&:hover': {
-                color: `${colors.secondary}`,
-            }
+            
         },
         h6: {
             fontWeight: 600,
@@ -52,8 +46,8 @@ export const theme = createTheme({
             xs: 0,
             sm: 320,
             md: 1200,
-            lg: 1336,
-            xl: 1648,
+            lg: 1300,
+            xl: 1480,
         }
     }
 })
