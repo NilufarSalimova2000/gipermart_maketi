@@ -2,7 +2,7 @@ import { Badge, Button, IconButton, InputAdornment, TextField, Typography } from
 import { Container, Stack } from "@mui/system";
 import React from "react";
 import { TelIcon } from "../../assets/icons/tel-icon";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.svg"
 import { MenuIcon } from "../../assets/icons/menu-icon";
 import { colors } from "../../mui-config/colors";
@@ -12,6 +12,14 @@ import { LikeIcon } from "../../assets/icons/like-icon";
 import { CartIcon } from "../../assets/icons/cart-icon";
 
 export const Header = () => {
+    const [input, setInput] = React.useState("");
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        if (e.key === "Enter" && input.trim()) {
+            navigate(`/search?query=${encodeURIComponent(input.trim())}`);
+        }
+    };
     return (
        <header>
         <Container maxWidth="xl">
@@ -40,7 +48,7 @@ export const Header = () => {
                     <Button sx={{backgroundColor: colors.gipermart, padding: "12px 45px 12px 12px", fontWeight: 400, fontSize: "20px", color: colors.m3syslightontertiarycontainer,}} startIcon={<MenuIcon />}>
                         Каталог
                     </Button>
-                    <TextField style={{width: "650px"}} InputProps={{
+                    <TextField onKeyDown={handleSearch} value={input} onChange={(e) => setInput(e.target.value)} style={{width: "650px"}} InputProps={{
                 endAdornment: (
                     <InputAdornment position="end">
                         <SearchIcon />

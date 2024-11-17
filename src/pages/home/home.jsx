@@ -12,6 +12,7 @@ import { ProductSlider } from "../../components/product-slider/product-slider";
 import { useGetAksiya } from "../../service/query/useGetAksiya";
 import { useGetBrand } from "../../service/query/useGetBrand";
 import { BrandCard } from "../../components/brand-card/brand-card";
+import { HomeCard } from "../../components/home-card";
 
 export const Home = () => {
     const { data, isLoading } = useGetCategory();
@@ -76,11 +77,19 @@ export const Home = () => {
                 </Container>
             </Stack>
 
-            {/* <Stack py={"32px"}>
+            <Stack py={"32px"}>
                 <Container maxWidth="xl">
-                    <Stack></Stack>
+                    <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                    >
+                        <HomeCard path={"sport"} name={"Спорт"} />
+                        <HomeCard path={"steeringWheel"} name={"Авто мото товары"} />
+                        <HomeCard path={"washingM"} name={"Бытовая техника"} />
+                    </Stack>
                 </Container>
-            </Stack> */}
+            </Stack>
 
             <ProductSlider path={"phones"} title={"Смартфоны и планшеты"} />
             <ProductSlider path={"notebook"} title={"Ноутбуки, планшеты и компьютеры"} />

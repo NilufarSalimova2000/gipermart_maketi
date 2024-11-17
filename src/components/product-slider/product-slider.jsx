@@ -1,7 +1,5 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { request } from "../../config/request";
 import { ProductCard } from "../product-card/product-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -10,16 +8,12 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { LeftIcon } from "../../assets/icons/left-icon";
 import { RightIcon } from "../../assets/icons/right-icon";
 import "./style.css"
+import { Link } from "react-router-dom";
+import { useGetProducts } from "../../service/query/useGetProducts";
 
 
 export const ProductSlider = ({ path, title }) => {
-    const useGetProducts = () => {
-        return useQuery({
-            queryKey: ["product", path],
-            queryFn: () => request.get(`/${path}`).then((res) => res.data)
-        })
-    }
-    const { data, isLoading } = useGetProducts();
+    const { data, isLoading } = useGetProducts(path);
     return (
         <Box pt={"16px"} pb={"48px"}>
             <Container maxWidth="xl">
@@ -48,7 +42,7 @@ export const ProductSlider = ({ path, title }) => {
                             
                                 {data?.map((item) => (
                                     <SwiperSlide key={item.id}>
-                                        <ProductCard  {...item} />
+                                        <Link style={{textDecoration: "none"}} to={`/product-detail/${item.id}`}><ProductCard  {...item} /></Link>
                                     </SwiperSlide>
                                 ))}
                            
