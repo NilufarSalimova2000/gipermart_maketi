@@ -5,14 +5,11 @@ export const theme = createTheme({
     typography: {
         fontFamily: ["Jost", "serif"].join(),
         h1: {
-            fontWeight: 800,
-            fontSize: "70px",
-            color: `${colors.primary}`,
+            
+            
         },
         h2: {
-            fontWeight: 800,
-            fontSize: "50px",
-            color: `${colors.primary}`,
+            
         },
         h3:{
             fontWeight: 600,
@@ -27,18 +24,15 @@ export const theme = createTheme({
             color: `${colors.m3syslightonbackground}`,
         },
         h5: {
-            
+            fontWeight: 400,
+            fontSize: "14px",
+            color: "#333"
         },
         h6: {
-            fontWeight: 600,
-            fontSize: "18px",
-            color: `${colors.primary}`,
+            
         },
         body1: {
-            fontWeight: 400,
-            fontSize: "18px",
-            lineHeight: "165%",
-            color: `${colors.text}`,
+            
         }
     },
     breakpoints: {

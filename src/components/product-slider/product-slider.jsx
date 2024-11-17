@@ -15,7 +15,7 @@ import "./style.css"
 export const ProductSlider = ({ path, title }) => {
     const useGetProducts = () => {
         return useQuery({
-            queryKey: ["product"],
+            queryKey: ["product", path],
             queryFn: () => request.get(`/${path}`).then((res) => res.data)
         })
     }
