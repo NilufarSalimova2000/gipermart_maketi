@@ -1,7 +1,7 @@
 import { Box, Button, Container, Rating, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useSingleProduct } from "../../service/query/useSingleProduct";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { LikeIcon } from "../../assets/icons/like-icon";
 import styled from "@emotion/styled";
 
@@ -50,7 +50,7 @@ export const ProductDetail = () => {
                                 </Stack>
                                 <Box padding={"16px"} border={"1px solid #ededed"}>
                                     <Typography mb={"21px"} variant="h2">{data?.price} Сум</Typography>
-                                    <CustomButton>В корзину</CustomButton>
+                                    <Link style={{textDecoration: "none"}} to={"/cart"}><CustomButton>В корзину</CustomButton></Link>
                                 </Box>
                             </Stack>
                         </Box>

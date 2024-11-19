@@ -8,7 +8,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { LeftIcon } from "../../assets/icons/left-icon";
 import { RightIcon } from "../../assets/icons/right-icon";
 import "./style.css"
-import { Link } from "react-router-dom";
 import { useGetProducts } from "../../service/query/useGetProducts";
 
 
@@ -28,7 +27,7 @@ export const ProductSlider = ({ path, title }) => {
                     {isLoading ? (
                         <Typography>Loading</Typography>
                     ) : (
-                        <Swiper style={{padding:"10px"}}
+                        <Swiper style={{ padding: "10px" }}
                             modules={[Navigation, Autoplay]}
                             slidesPerView={6}
                             spaceBetween={20}
@@ -39,13 +38,11 @@ export const ProductSlider = ({ path, title }) => {
                                 prevEl: ".arrow-left",
                             }}
                         >
-                            
-                                {data?.map((item) => (
-                                    <SwiperSlide key={item.id}>
-                                        <Link style={{textDecoration: "none"}} to={`/product-detail/${item.id}`}><ProductCard  {...item} /></Link>
-                                    </SwiperSlide>
-                                ))}
-                           
+                            {data?.map((item) => (
+                                <SwiperSlide key={item.id}>
+                                    <ProductCard  {...item} />
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                     )}
                 </Stack>

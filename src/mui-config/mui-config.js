@@ -32,7 +32,10 @@ export const theme = createTheme({
             color: "#333"
         },
         h6: {
-            
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "100%",
+            color:"#999"
         },
         body1: {
             

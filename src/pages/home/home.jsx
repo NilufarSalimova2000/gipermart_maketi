@@ -13,6 +13,7 @@ import { useGetAksiya } from "../../service/query/useGetAksiya";
 import { useGetBrand } from "../../service/query/useGetBrand";
 import { BrandCard } from "../../components/brand-card/brand-card";
 import { HomeCard } from "../../components/home-card";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
     const { data, isLoading } = useGetCategory();
@@ -50,7 +51,7 @@ export const Home = () => {
                             >
                                 {data?.map((item) => (
                                     <SwiperSlide key={item.id}>
-                                        <CategoryCard {...item} />
+                                        <Link style={{textDecoration: "none"}} to={`/catalog/${item.name}`}><CategoryCard {...item} /></Link>
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
