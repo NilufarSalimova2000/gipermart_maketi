@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addCart } from "../../redux/reducers/product-reducer";
 import { ShowIcon } from "../../assets/icons/show-icon";
+import formatter from "../../utils/currency-format";
 
 const CartButton = styled(Button)`
     padding: 6px;
@@ -48,7 +49,7 @@ export const ProductCard = (props) => {
             <Typography variant="h4">{props.brand}</Typography>
             <Link style={{ textDecoration: "none" }} to={`/product-detail/${props.id}`}><Typography mb={"27px"} variant="h4">{props.title}{props.rame}{props.color}</Typography></Link>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} mt={"auto"}>
-                <Typography fontSize={"18px"} variant="h3">{props.price} Сум</Typography>
+                <Typography fontSize={"18px"} variant="h3">{formatter(props.price)} Сум</Typography>
                 <CartButton onClick={handleButtonClick}>{isAdded ? <ShowIcon /> : <CartIcon />}</CartButton>
             </Stack>
         </Stack>

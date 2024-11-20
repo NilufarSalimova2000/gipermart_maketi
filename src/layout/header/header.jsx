@@ -1,4 +1,4 @@
-import { Badge, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
+import { Badge, Box, Button, Drawer, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import React from "react";
 import { TelIcon } from "../../assets/icons/tel-icon";
@@ -11,10 +11,15 @@ import { ProfileIcon } from "../../assets/icons/profile-icon";
 import { LikeIcon } from "../../assets/icons/like-icon";
 import { CartIcon } from "../../assets/icons/cart-icon";
 import { useSelector } from "react-redux";
+import { Login } from "../../components/login";
+import { Register } from "../../components/register";
 
 export const Header = () => {
     const [input, setInput] = React.useState("");
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [view, setView] = React.useState("login")
+
 
     const handleSearch = (e) => {
         if (e.key === "Enter" && input.trim()) {
@@ -73,22 +78,41 @@ export const Header = () => {
                     </Stack>
                     <Stack direction={"row"} gap={"32px"}>
                         <Stack gap={"4px"} alignItems={"center"}>
-                            <IconButton><ProfileIcon /></IconButton>
+                            <IconButton onClick={() => setIsOpen(true)}><ProfileIcon /></IconButton>
                             <Typography lineHeight={"100%"} variant="h4">Войти</Typography>
                         </Stack>
                         <Stack gap={"4px"} alignItems={"center"}>
                             <IconButton><LikeIcon /></IconButton>
                             <Typography lineHeight={"100%"} variant="h4">Избранное</Typography>
                         </Stack>
-                        <Link style={{textDecoration: "none"}} to={"/cart"}>
+                        <Link style={{ textDecoration: "none" }} to={"/cart"}>
                             <Stack gap={"4px"} alignItems={"center"}>
-                                <IconButton><Badge badgeContent={count ? count : "0"}  color="error"><CartIcon /></Badge></IconButton>
+                                <IconButton><Badge badgeContent={count ? count : "0"} color="error"><CartIcon /></Badge></IconButton>
                                 <Typography lineHeight={"100%"} variant="h4">Корзина</Typography>
                             </Stack>
                         </Link>
                     </Stack>
                 </Stack>
             </Container>
+
+            <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
+                <Box maxWidth={"346px"} p={"24px"}>
+                    <IconButton style={{ textAlign: "right", marginBottom: "8px" }} onClick={() => setIsOpen(false)}>x</IconButton>
+                    <Stack>{view === "login" ? <Login /> : <Register />}</Stack>
+                    <Box>
+                        {view === "login" ? (
+                            <Button onClick={() => setView("register")} fullWidth variant="outlined">
+                            Зарегистрироваться
+                        </Button>
+                        ) : (
+                            <Button onClick={() => setView("login")} fullWidth variant="outlined">
+                            Back to Sign In
+                        </Button>
+                        )}
+                    </Box>
+                    
+                </Box>
+            </Drawer>
         </header>
     )
 }

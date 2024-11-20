@@ -15,7 +15,7 @@ const CustomButton = styled(Button)`
     font-weight: 400;
     font-size: 20px;
     line-height: 100%;
-
+    color: "#000";
 `
 
 export const Cart = () => {
@@ -37,7 +37,7 @@ export const Cart = () => {
                             <Typography mb={"16px"} variant="h4">Товаров: </Typography>
                             <Typography variant="h3">{formatter(totalPrice)} Сум</Typography>
                         </Box>
-                        <Button>Оформить заказ</Button>
+                        <CustomButton>Оформить заказ</CustomButton>
                     </Box>
                 </Stack>
             </Container>

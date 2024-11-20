@@ -4,6 +4,7 @@ import { useSingleProduct } from "../../service/query/useSingleProduct";
 import { Link, useParams } from "react-router-dom";
 import { LikeIcon } from "../../assets/icons/like-icon";
 import styled from "@emotion/styled";
+import formatter from "../../utils/currency-format";
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -49,7 +50,7 @@ export const ProductDetail = () => {
                                     <Typography fontSize={"16px"} variant="h5">память: {data?.rame}</Typography>
                                 </Stack>
                                 <Box padding={"16px"} border={"1px solid #ededed"}>
-                                    <Typography mb={"21px"} variant="h2">{data?.price} Сум</Typography>
+                                    <Typography mb={"21px"} variant="h2">{formatter(data?.price)} Сум</Typography>
                                     <Link style={{textDecoration: "none"}} to={"/cart"}><CustomButton>В корзину</CustomButton></Link>
                                 </Box>
                             </Stack>
