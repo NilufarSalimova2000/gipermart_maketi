@@ -7,20 +7,19 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 
 export const Register = () => {
     const { handleSubmit, register, reset } = useForm();
-    const navigate = useNavigate();
     const { mutate } = useRegisterCreate()
 
     const submit = (data) => {
         mutate(data, {
             onSuccess: (data) => {
-                toast.success(data.message);
-                reset();
-                navigate("/login")
+                toast.success("Mufavaqiyatli");
+                
             },
-            onError: (data) => {
-                toast.error(data.response.data.message)
+            onError: (error) => {
+                toast.error("Ro'yxatdan o'tmagansiz")
             }
         })
+        reset();
     }
     return (
         <>
@@ -32,18 +31,17 @@ export const Register = () => {
                 <form onSubmit={handleSubmit(submit)}>
                     <TextField type="text"
                         fullWidth
-                        label="Наме"
+                        label="Имя"
                         variant="outlined"
                         margin="normal"
-                        {...register("text")}
+                        {...register("name")}
                     />
-                    <TextField type="text"
+                    <TextField type="email"
                         fullWidth
-                        label="Номер телефона"
-                        defaultValue="+998"
+                        label="Email"
                         variant="outlined"
                         margin="normal"
-                        {...register("text")}
+                        {...register("email")}
                     />
                     <TextField
                         fullWidth
@@ -61,11 +59,8 @@ export const Register = () => {
                         variant="contained"
                         sx={{ backgroundColor: "yellow", color: "black", marginBottom: 2 }}
                     >
-                        Войти
+                        Save
                     </Button>
-                    {/* <Button type="submit" fullWidth variant="outlined">
-                        Зарегистрироваться
-                    </Button> */}
                 </form>
             </Box>
         </>

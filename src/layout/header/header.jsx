@@ -1,6 +1,6 @@
 import { Badge, Box, Button, Drawer, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import { TelIcon } from "../../assets/icons/tel-icon";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.svg"
@@ -13,12 +13,24 @@ import { CartIcon } from "../../assets/icons/cart-icon";
 import { useSelector } from "react-redux";
 import { Login } from "../../components/login";
 import { Register } from "../../components/register";
+import { DrowerContext } from "../../context/drowerOpen";
+import { loadState } from "../../utils/storage";
 
 export const Header = () => {
     const [input, setInput] = React.useState("");
+    const {open, setOpen} = useContext(DrowerContext);
+    const [view, setView] = React.useState("login");
+    const accessToken = loadState("userData");
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [view, setView] = React.useState("login")
+
+    const handleReset = () => {
+        
+        if(!accessToken) {
+            setOpen(true)
+        } else{
+            navigate("/profile");
+        }
+    }
 
 
     const handleSearch = (e) => {
@@ -78,7 +90,7 @@ export const Header = () => {
                     </Stack>
                     <Stack direction={"row"} gap={"32px"}>
                         <Stack gap={"4px"} alignItems={"center"}>
-                            <IconButton onClick={() => setIsOpen(true)}><ProfileIcon /></IconButton>
+                            <IconButton onClick={handleReset}><ProfileIcon /></IconButton>
                             <Typography lineHeight={"100%"} variant="h4">Войти</Typography>
                         </Stack>
                         <Stack gap={"4px"} alignItems={"center"}>
@@ -95,9 +107,9 @@ export const Header = () => {
                 </Stack>
             </Container>
 
-            <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
+            <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
                 <Box maxWidth={"346px"} p={"24px"}>
-                    <IconButton style={{ textAlign: "right", marginBottom: "8px" }} onClick={() => setIsOpen(false)}>x</IconButton>
+                    <IconButton style={{ textAlign: "right", marginBottom: "8px" }} onClick={() => setOpen(false)}>x</IconButton>
                     <Stack>{view === "login" ? <Login /> : <Register />}</Stack>
                     <Box>
                         {view === "login" ? (
@@ -106,7 +118,7 @@ export const Header = () => {
                         </Button>
                         ) : (
                             <Button onClick={() => setView("login")} fullWidth variant="outlined">
-                            Back to Sign In
+                            Back to Login
                         </Button>
                         )}
                     </Box>

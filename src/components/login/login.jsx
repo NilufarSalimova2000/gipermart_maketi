@@ -4,23 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { useLoginCreate } from "../../service/mutation/useLoginCreate";
 import { toast } from "react-toastify";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { saveState } from "../../utils/storage";
 
 export const Login = () => {
     const { handleSubmit, register, reset } = useForm();
-    const navigate = useNavigate();
     const { mutate } = useLoginCreate();
 
     const submit = (data) => {
         mutate(data, {
-            onSuccess: (data) => {
-                toast.success(data.message);
-                reset();
-                navigate("/profil")
+            onSuccess: (res) => {
+                console.log(res);
+                toast.success("Muvaffaqiyatli");
+                saveState("userData", res);
+
+
+               
             },
-            onError: (data) => {
-                toast.error(data.response.data.message)
+            onError: (error) => {
+                toast.error("Ro'yxatdan o'tmagansiz")
             }
+             
         })
+        reset();
     }
     return (
         <>
@@ -31,13 +36,12 @@ export const Login = () => {
                 </Typography>
                 <form onSubmit={handleSubmit(submit)}>
                     
-                    <TextField type="text"
+                <TextField type="email"
                         fullWidth
-                        label="Номер телефона"
-                        defaultValue="+998"
+                        label="Email"
                         variant="outlined"
                         margin="normal"
-                        {...register("text")}
+                        {...register("email")}
                     />
                     <TextField
                         fullWidth
