@@ -30,7 +30,7 @@ export const Cart = () => {
         if(!accessToken) {
             setOpen(!open)
         } else{
-
+            alert("Tasdiqlandi")
         }
     }
     return (

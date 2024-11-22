@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useLoginCreate } from "../../service/mutation/useLoginCreate";
 import { toast } from "react-toastify";
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -16,9 +15,6 @@ export const Login = () => {
                 console.log(res);
                 toast.success("Muvaffaqiyatli");
                 saveState("userData", res);
-
-
-               
             },
             onError: (error) => {
                 toast.error("Ro'yxatdan o'tmagansiz")
